@@ -1,4 +1,4 @@
-package skeletor
+package databricks
 
 import (
 	"io/ioutil"

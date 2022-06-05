@@ -1,4 +1,4 @@
-module get.porter.sh/mixin/skeletor
+module github.com/KiPIDesTAN/porter-databricks
 
 go 1.17
 

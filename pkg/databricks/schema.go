@@ -1,4 +1,4 @@
-package skeletor
+package databricks
 
 import (
 	_ "embed"

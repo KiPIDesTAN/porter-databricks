@@ -4,40 +4,40 @@
     "installStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "databricks": {"$ref": "#/definitions/databricks"}
       },
       "required": [
-        "skeletor"
+        "databricks"
       ],
       "additionalProperties": false
     },
     "upgradeStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "databricks": {"$ref": "#/definitions/databricks"}
       },
       "required": [
-        "skeletor"
+        "databricks"
       ],
       "additionalProperties": false
     },
     "invokeStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "databricks": {"$ref": "#/definitions/databricks"}
       },
       "required": [
-        "skeletor"
+        "databricks"
       ],
       "additionalProperties": false
     },
     "uninstallStep": {
       "type": "object",
       "properties": {
-        "skeletor": {"$ref": "#/definitions/skeletor"}
+        "databricks": {"$ref": "#/definitions/databricks"}
       },
       "required": [
-        "skeletor"
+        "databricks"
       ],
       "additionalProperties": false
     },
@@ -74,7 +74,7 @@
         ]
       }
     },
-    "skeletor": {
+    "databricks": {
       "type": "object",
       "properties": {
         "description": {

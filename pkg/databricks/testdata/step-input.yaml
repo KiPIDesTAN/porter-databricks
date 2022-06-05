@@ -1,7 +1,5 @@
-config:
-  clientVersion: v0.0.0
 install:
-  - skeletor:
+  - databricks:
       description: "Summon Minion"
       arguments:
       - "man-e-faces"

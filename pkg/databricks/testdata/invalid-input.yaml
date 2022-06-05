@@ -1,5 +1,5 @@
 install:
-  - skeletor:
+  - databricks:
       description: "Invalid Input Test Case"
       args:
       - yarrrr

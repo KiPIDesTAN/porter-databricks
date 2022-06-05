@@ -1,12 +1,12 @@
-package skeletor
+package databricks
 
 import (
 	"strings"
 	"testing"
 
-	"get.porter.sh/mixin/skeletor/pkg"
 	"get.porter.sh/porter/pkg/porter/version"
 	"get.porter.sh/porter/pkg/printer"
+	"github.com/KiPIDesTAN/porter-databricks/pkg"
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,7 +22,7 @@ func TestPrintVersion(t *testing.T) {
 	m.PrintVersion(opts)
 
 	gotOutput := m.TestContext.GetOutput()
-	wantOutput := "skeletor v1.2.3 (abc123) by YOURNAME"
+	wantOutput := "databricks v1.2.3 (abc123) by KiPIDesTAN"
 	if !strings.Contains(gotOutput, wantOutput) {
 		t.Fatalf("invalid output:\nWANT:\t%q\nGOT:\t%q\n", wantOutput, gotOutput)
 	}
@@ -42,10 +42,10 @@ func TestPrintJsonVersion(t *testing.T) {
 
 	gotOutput := m.TestContext.GetOutput()
 	wantOutput := `{
-  "name": "skeletor",
+  "name": "databricks",
   "version": "v1.2.3",
   "commit": "abc123",
-  "author": "YOURNAME"
+  "author": "KiPIDesTAN"
 }
 `
 	if !strings.Contains(gotOutput, wantOutput) {

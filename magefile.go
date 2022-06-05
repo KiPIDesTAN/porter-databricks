@@ -1,3 +1,4 @@
+//go:build mage
 // +build mage
 
 package main
@@ -14,8 +15,8 @@ import (
 )
 
 const (
-	mixinName    = "skeletor"
-	mixinPackage = "get.porter.sh/mixin/skeletor"
+	mixinName    = "databricks"
+	mixinPackage = "github.com/KiPIDesTAN/porter-databricks"
 	mixinBin     = "bin/mixins/" + mixinName
 )
 
