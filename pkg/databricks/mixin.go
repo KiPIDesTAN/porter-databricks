@@ -5,7 +5,7 @@ import (
 	"get.porter.sh/porter/pkg/context"
 )
 
-const defaultClientVersion string = "v0.0.0"
+const defaultClientVersion string = "v0.1.0"
 
 type Mixin struct {
 	*context.Context

@@ -1,6 +1,8 @@
 package databricks
 
 import (
+	"fmt"
+
 	"get.porter.sh/porter/pkg/exec/builder"
 	yaml "gopkg.in/yaml.v2"
 )
@@ -54,8 +56,8 @@ func (m *Mixin) Build() error {
 
 	//fmt.Fprintf(m.Out, dockerfileLines)
 
-	// Example of pulling and defining a client version for your mixin
-	// fmt.Fprintf(m.Out, "\nRUN curl https://get.helm.sh/helm-%s-linux-amd64.tar.gz --output helm3.tar.gz", m.ClientVersion)
+	fmt.Fprintf(m.Out, "\nRUN /usr/local/bin/python -m pip install --upgrade pip")
+	fmt.Fprintf(m.Out, "\nRUN pip install --no-cache-dir databricks-cli")
 
 	return nil
 }
