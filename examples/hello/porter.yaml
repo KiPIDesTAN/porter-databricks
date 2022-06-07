@@ -1,0 +1,85 @@
+# This is the configuration for Porter
+# You must define steps for each action, but the rest is optional
+# See https://porter.sh/author-bundles for documentation on how to configure your bundle
+# Uncomment out the sections below to take full advantage of what Porter can do!
+
+name: porter-hello
+version: 0.1.0
+description: "An example Porter configuration"
+# TODO: update the registry to your own, e.g. myregistry
+registry: getporter
+
+# If you want to customize the Dockerfile in use, uncomment the line below and update the referenced file. 
+# See https://porter.sh/custom-dockerfile/
+dockerfile: Dockerfile.tmpl
+
+mixins:
+  - exec
+  - az
+  - databricks
+
+install:
+  - az:
+      description: "Login to Azure"
+      arguments:
+        - login
+      flags:
+        service-principal:
+        username: '{{ bundle.credentials.azure_client_id }}'
+        password: '{{ bundle.credentials.azure_client_secret }}'
+        tenant: '{{ bundle.credentials.azure_tenant_id }}'
+  - az:
+      description: "Get Databricks token"
+      arguments:
+        - account
+        - get-access-token
+      flags:
+        resource: '2ff814a6-3304-4ab8-85cb-cd0e6f879c1d'
+      outputs:
+        - name: aad-token
+          jsonPath: $.accessToken
+  - exec:
+      description: "Create Databricks CLI file"
+      command: ./helpers.sh
+      arguments:
+        - create-databrickscfg
+        - '{{ bundle.parameters.databricks-host }}'
+        - '{{ bundle.outputs.aad-token }}'
+  - databricks:
+      description: "List Clusters"
+      arguments:
+        - clusters
+        - list
+
+upgrade:
+  - exec:
+      description: "World 2.0"
+      command: ./helpers.sh
+      arguments:
+        - upgrade
+
+uninstall:
+  - exec:
+      description: "Uninstall Hello World"
+      command: ./helpers.sh
+      arguments:
+        - uninstall
+
+# Below is an example of how to define credentials
+# See https://porter.sh/author-bundles/#credentials
+credentials:
+  - name: azure_tenant_id
+    env: AZURE_TENANT_ID
+  - name: azure_client_id
+    env: AZURE_CLIENT_ID
+  - name: azure_client_secret
+    env: AZURE_CLIENT_SECRET
+#  - name: username
+#    env: USERNAME
+
+# Below is an example of how to define parameters
+# See https://porter.sh/author-bundles/#parameters
+parameters:
+  - name: databricks-host
+    type: string
+#    default: wordpress
